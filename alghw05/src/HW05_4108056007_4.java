@@ -10,6 +10,9 @@ public class HW05_4108056007_4 extends LLK
 	public static class Node{
 		public double slope;
 		public Node next;
+		public Node(double slope, final Node next){
+			this.slope= slope; this.next=next;
+		}
 	}
 
 	public boolean checkLLK(int[][] array)
@@ -30,9 +33,7 @@ public class HW05_4108056007_4 extends LLK
 							answer=true; break;
 						}
 						else {
-							Node new_entry = new Node();
-							new_entry.slope = slope;
-							new_entry.next = list_entry[index];
+							Node new_entry = new Node(slope, list_entry[index]);
 							list_entry[index] = new_entry;
 						}
 					}

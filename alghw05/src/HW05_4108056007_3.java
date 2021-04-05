@@ -6,7 +6,7 @@ public class HW05_4108056007_3 extends LLK
 		System.out.println(test.checkLLK(array));
 	}
 
-	public static class entry{
+	public class entry{
 		public double slope;
 		public entry next;
 	}
