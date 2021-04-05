@@ -12,13 +12,13 @@ public class HW05_4108056007_3 extends LLK
 	}
 
 	public boolean checkLLK(int[][] array){
-		int capacity=(int)((array.length)*1.7), index;
+		int bucket=(int)((array.length)*1.7), index;
 		double slope;
-		entry[] list_entry= new entry[capacity];
+		entry[] list_entry= new entry[bucket];
 		for(int i=0; i< array.length; ++i){
 			for (int j=i+1; j<array.length; ++j){
 				slope= (double)(array[i][0]-array[j][0]) / (double)(array[i][1]-array[j][1]);
-				index= (Double.valueOf(slope).hashCode() & 0x7fffffff) % capacity;
+				index= (Double.valueOf(slope).hashCode() & 0x7fffffff) % bucket;
 				if (contain(slope, list_entry, index)) return true;
 				else {
 					entry new_entry= new entry();
@@ -27,7 +27,7 @@ public class HW05_4108056007_3 extends LLK
 					list_entry[index]= new_entry;
 				}
 			}
-			list_entry= new entry[capacity];
+			list_entry= new entry[bucket];
 		}
 		return false;
 	}
