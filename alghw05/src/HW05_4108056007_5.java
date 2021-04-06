@@ -27,7 +27,7 @@ public class HW05_4108056007_5 extends LLK
 				object[] list_entry = new object[bucket];
 				for (int i = start_index; i >=0; i-=5) {
 					for (int j = i-1; j >=0; --j) {
-						slope = (double) (array[i][0] - array[j][0]) / (double) (array[i][1] - array[j][1]);
+						slope = (double)(array[i][0] - array[j][0]) / (double) (array[i][1] - array[j][1]);
 						index = (Double.valueOf(slope).hashCode() & 0x7fffffff) % bucket;
 						if (contain(slope, list_entry, index)) {
 							answer=true; break;
