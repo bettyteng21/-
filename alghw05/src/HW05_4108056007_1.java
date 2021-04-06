@@ -5,46 +5,38 @@ public class HW05_4108056007_1 extends LLK
 		int[][] array= {{48471285,46187890},{29017325,54336429},{1111,1111},{2222,2222},{39071816,-13623959},{-68518169,15335968},{5555,5555}};
 		System.out.println(test.checkLLK(array));
 	}
+
+	public class node{
+		public double slope;
+		public node next;
+		public node(double slope, node next){
+			this.slope=slope; this.next=next;
+		}
+	}
+
 	public boolean checkLLK(int[][] array){
-		int j,k, len=array.length-1;
-		for(int i=0; i< array.length; ++i){
-			double[] slope= new double[len-i];
-			for (j=i+1, k=0; j< array.length; ++j, ++k){
-				slope[k]=(double)(array[i][1]-array[j][1])/(double)(array[i][0]-array[j][0]);
+		int bucket=(1 << ((int) Math.ceil(Math.log10(array.length) / 0.3010))), index;
+		double slope;
+		node[] list_entry= new node[bucket];
+		for(int i=array.length-1; i>=0; --i){
+			for (int j=i-1; j>=0; --j){
+				slope= (double)(array[i][0]-array[j][0]) / (double)(array[i][1]-array[j][1]);
+				index= (Double.valueOf(slope).hashCode() & 0x7fffffff) % bucket;
+				if (contain(slope, list_entry, index)) return true;
+				else {
+					node new_entry= new node(slope, list_entry[index]);
+					list_entry[index]= new_entry;
+				}
 			}
-			qSort(slope, 0, slope.length-1);
-			for(k=0; k< slope.length-1; ++k){
-				if (slope[k]==slope[k+1] && slope[k]==slope[k+1]) return true;
-			}
+			list_entry= new node[bucket];
 		}
 		return false;
 	}
 
-	static int partition(double[] arr, int low, int high)
-	{
-		double pivot = arr[high], temp;
-		int i = (low - 1);
-		for (int j = low; j <= high - 1; ++j) {
-			if (arr[j] <= pivot) {
-				++i;
-				temp = arr[i];
-				arr[i] = arr[j];
-				arr[j] = temp;
-			}
+	public boolean contain(double slope, node[] list_entry, int index){
+		for (node curr = list_entry[index]; curr!=null; curr=curr.next){
+			if (curr.slope==slope) return true;
 		}
-		temp = arr[i+1];
-		arr[i+1] = arr[high];
-		arr[high] = temp;
-		return (i+1);
-	}
-
-	static void qSort(double[] arr, int low, int high)
-	{
-		int pi;
-		if (low < high) {
-			pi = partition(arr, low, high);
-			qSort(arr, low, pi - 1);
-			qSort(arr, pi + 1, high);
-		}
+		return false;
 	}
 }

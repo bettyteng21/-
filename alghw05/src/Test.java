@@ -10,6 +10,9 @@ public class Test{
 		final int[][] LLCTD = test.loadData_LLK();
 		test.timing(new HW05_4108056007_3(), LLCTD);
 		test.timing(new HW05_4108056007_4(), LLCTD);
+		test.timing(new HW05_4108056007_2(), LLCTD);
+		test.timing(new HW05_4108056007_5(), LLCTD);
+		test.timing(new HW05_4108056007_1(), LLCTD);
 
 		if(test.Fastest != null) System.out.printf(test.Fastest.getClass()+" is the fastest, cost: %.6fs",test.Fastest_Cost);
 	}

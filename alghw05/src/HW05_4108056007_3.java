@@ -9,10 +9,13 @@ public class HW05_4108056007_3 extends LLK
 	public class entry{
 		public double slope;
 		public entry next;
+		public entry(double slope, entry next){
+			this.slope=slope; this.next=next;
+		}
 	}
 
 	public boolean checkLLK(int[][] array){
-		int bucket=(int)((array.length)*1.7), index;
+		int bucket=(1 << ((int) Math.ceil(Math.log10(array.length) / 0.3010))), index;
 		double slope;
 		entry[] list_entry= new entry[bucket];
 		for(int i=0; i< array.length; ++i){
@@ -21,9 +24,7 @@ public class HW05_4108056007_3 extends LLK
 				index= (Double.valueOf(slope).hashCode() & 0x7fffffff) % bucket;
 				if (contain(slope, list_entry, index)) return true;
 				else {
-					entry new_entry= new entry();
-					new_entry.slope= slope;
-					new_entry.next= list_entry[index];
+					entry new_entry= new entry(slope, list_entry[index]);
 					list_entry[index]= new_entry;
 				}
 			}
