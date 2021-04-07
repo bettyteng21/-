@@ -18,24 +18,18 @@ public class HW05_4108056007_1 extends LLK
 		int bucket=(1 << ((int) Math.ceil(Math.log10(array.length) / 0.3010))), index;
 		double slope;
 		node[] list_entry= new node[bucket];
+		node curr, new_entry;
 		for(int i=array.length-1; i>=0; --i){
-			for (int j=i-1; j>=0; --j){
+			for (int j=0; j<i; ++j){
 				slope= (double)(array[i][0]-array[j][0]) / (double)(array[i][1]-array[j][1]);
 				index= (Double.valueOf(slope).hashCode() & 0x7fffffff) % bucket;
-				if (contain(slope, list_entry, index)) return true;
-				else {
-					node new_entry= new node(slope, list_entry[index]);
-					list_entry[index]= new_entry;
+				for (curr = list_entry[index]; curr!=null; curr=curr.next){
+					if (curr.slope==slope) return true;
 				}
+				new_entry= new node(slope, list_entry[index]);
+				list_entry[index]= new_entry;
 			}
 			list_entry= new node[bucket];
-		}
-		return false;
-	}
-
-	public boolean contain(double slope, node[] list_entry, int index){
-		for (node curr = list_entry[index]; curr!=null; curr=curr.next){
-			if (curr.slope==slope) return true;
 		}
 		return false;
 	}

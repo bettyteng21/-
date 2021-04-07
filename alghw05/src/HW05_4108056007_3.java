@@ -17,25 +17,19 @@ public class HW05_4108056007_3 extends LLK
 	public boolean checkLLK(int[][] array){
 		int bucket=(1 << ((int) Math.ceil(Math.log10(array.length) / 0.3010))), index;
 		double slope;
+		entry curr, new_entry;
 		entry[] list_entry= new entry[bucket];
 		for(int i=0; i< array.length; ++i){
 			for (int j=i+1; j<array.length; ++j){
 				slope= (double)(array[i][0]-array[j][0]) / (double)(array[i][1]-array[j][1]);
 				index= (Double.valueOf(slope).hashCode() & 0x7fffffff) % bucket;
-				if (contain(slope, list_entry, index)) return true;
-				else {
-					entry new_entry= new entry(slope, list_entry[index]);
-					list_entry[index]= new_entry;
+				for (curr = list_entry[index]; curr!=null; curr=curr.next){
+					if (curr.slope==slope) return true;
 				}
+				new_entry= new entry(slope, list_entry[index]);
+				list_entry[index]= new_entry;
 			}
 			list_entry= new entry[bucket];
-		}
-		return false;
-	}
-
-	public boolean contain(double slope, entry[] list_entry, int index){
-		for (entry curr = list_entry[index]; curr!=null; curr=curr.next){
-			if (curr.slope==slope) return true;
 		}
 		return false;
 	}

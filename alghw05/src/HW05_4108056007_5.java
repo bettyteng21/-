@@ -17,32 +17,34 @@ public class HW05_4108056007_5 extends LLK
 
 	public boolean checkLLK(int[][] array)
 	{
-		Thread[] T = new Thread[8];
+		Thread[] T = new Thread[10];
 		final int bucket = (1 << ((int) Math.ceil(Math.log10(array.length) / 0.3010)));
 		int thread_num;
-		for (thread_num = 0; thread_num < 8; ++thread_num) {
+		for (thread_num = 0; thread_num < 10; ++thread_num) {
 			final int start_index= array.length-1-thread_num;
 			T[thread_num]= new Thread(()->{
 				int index; double slope;
 				object[] list_entry = new object[bucket];
-				for (int i = start_index; i >=0; i-=5) {
-					for (int j = i-1; j >=0; --j) {
+				object new_entry, curr;
+				for (int i = start_index; i >=0; i-=10) {
+					for (int j = 0; j <i; ++j) {
 						slope = (double)(array[i][0] - array[j][0]) / (double) (array[i][1] - array[j][1]);
 						index = (Double.valueOf(slope).hashCode() & 0x7fffffff) % bucket;
-						if (contain(slope, list_entry, index)) {
-							answer=true; break;
+						for (curr = list_entry[index]; curr!=null; curr=curr.next){
+							if (curr.slope==slope) {
+								answer=true; break;
+							}
 						}
-						else {
-							object new_entry = new object(slope, list_entry[index]);
-							list_entry[index] = new_entry;
-						}
+						new_entry = new object(slope, list_entry[index]);
+						list_entry[index] = new_entry;
 					}
+					if(answer) break;
 					list_entry = new object[bucket];
 				}
 			});
 			T[thread_num].start();
 		}
-		for (thread_num=0; thread_num<8; ++thread_num){
+		for (thread_num=0; thread_num<10; ++thread_num){
 			try{
 				T[thread_num].join();
 			}
@@ -51,13 +53,6 @@ public class HW05_4108056007_5 extends LLK
 			}
 		}
 		return answer;
-	}
-
-	public boolean contain(double slope, object[] list_entry, int index){
-		for (object curr = list_entry[index]; curr!=null; curr=curr.next){
-			if (curr.slope==slope) return true;
-		}
-		return false;
 	}
 
 }
