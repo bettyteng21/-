@@ -6,30 +6,28 @@ public class HW05_4108056007_1 extends LLK
 		System.out.println(test.checkLLK(array));
 	}
 
-	public class node{
+	public static class Node{
 		public double slope;
-		public node next;
-		public node(double slope, node next){
-			this.slope=slope; this.next=next;
+		public Node next;
+		public Node(double slope, Node next){
+			this.slope= slope; this.next=next;
 		}
 	}
 
 	public boolean checkLLK(int[][] array){
-		int bucket=(1 << ((int) Math.ceil(Math.log10(array.length) / 0.3010))), index;
+		int index;
 		double slope;
-		node[] list_entry= new node[bucket];
-		node curr, new_entry;
+		final int bucket = (1 << ((int) Math.ceil(Math.log10(array.length) / 0.3010)));
+		Node[] list_entry= new Node[bucket];
+		Node curr, new_entry;
 		for(int i=array.length-1; i>=0; --i){
-			for (int j=0; j<i; ++j){
-				slope= (double)(array[i][0]-array[j][0]) / (double)(array[i][1]-array[j][1]);
-				index= (Double.valueOf(slope).hashCode() & 0x7fffffff) % bucket;
-				for (curr = list_entry[index]; curr!=null; curr=curr.next){
-					if (curr.slope==slope) return true;
-				}
-				new_entry= new node(slope, list_entry[index]);
-				list_entry[index]= new_entry;
+			slope= (double)(array[i][0]) / (double)(array[i][1]);
+			index= (Double.valueOf(slope).hashCode() & 0x7fffffff) % bucket;
+			for (curr = list_entry[index]; curr!=null; curr=curr.next){
+				if (curr.slope==slope) return true;
 			}
-			list_entry= new node[bucket];
+			new_entry= new Node(slope, list_entry[index]);
+			list_entry[index]= new_entry;
 		}
 		return false;
 	}

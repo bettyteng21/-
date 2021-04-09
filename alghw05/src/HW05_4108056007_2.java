@@ -7,7 +7,7 @@ public class HW05_4108056007_2 extends LLK
 		System.out.println(test.checkLLK(array));
 	}
 
-	public static class Node{
+	public class Node{
 		public double slope;
 		public Node next;
 		public Node(double slope, Node next){
@@ -18,7 +18,7 @@ public class HW05_4108056007_2 extends LLK
 	public boolean checkLLK(int[][] array)
 	{
 		final int bucket = (1 << ((int) Math.ceil(Math.log10(array.length) / 0.3010)));
-		if(array.length>50){
+		if(array.length>20){
 			int index;
 			double slope;
 			Node[] list_entry= new Node[bucket];
