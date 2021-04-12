@@ -1,5 +1,6 @@
 public class HW06_4108056007_1 extends Dessert_Desert
 {
+
 	public static void main(String[] args){
 		HW06_4108056007_1 test= new HW06_4108056007_1();
 		int[][] inputArr={{2,2,2,1,1,1}, {1,1,1,1,1,1,1}, {1,3,5,7,9},{1,2,3}, {5,4,3,2,1},{2,1,3,2},{6,1,5,8,3,7,9},{7,1,2,4,6,5,3},{2,3,1,5,4}};
