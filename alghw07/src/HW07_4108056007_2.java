@@ -13,7 +13,6 @@ public class HW07_4108056007_2 extends Buy_Phone
 
 	public int[][] bestPhone(int[][] inputArr){
 		int len= inputArr.length, len_minus1= inputArr.length-1, i, ans_index=0, curr=inputArr[len_minus1][1];
-
 		sort(inputArr, 0, len_minus1);
 
 		int[][] temp = new int[len][2];
