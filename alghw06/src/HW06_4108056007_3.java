@@ -11,13 +11,13 @@ public class HW06_4108056007_3 extends Dessert_Desert
 
 	public int[] maxBlocks(int[][] inputArr){
 		int[] ans= new int[inputArr.length];
-		Thread[] T = new Thread[10];
+		Thread[] T = new Thread[7];
 		int thread_num;
-		for (thread_num=0; thread_num<10; ++thread_num){
+		for (thread_num=0; thread_num<7; ++thread_num){
 			final int start_index= thread_num;
 			T[thread_num]= new Thread(()->{
 				int j, maxLeft, len;
-				for (int i=start_index; i< inputArr.length; i+=10){
+				for (int i=start_index; i< inputArr.length; i+=7){
 					ans[i]=1; len= inputArr[i].length;
 					int[] minRight= new int[len];
 					minRight[len-1]=inputArr[i][len-1];
@@ -35,7 +35,7 @@ public class HW06_4108056007_3 extends Dessert_Desert
 			});
 			T[thread_num].start();
 		}
-		for(thread_num=0; thread_num<10; ++thread_num){
+		for(thread_num=0; thread_num<7; ++thread_num){
 			try{
 				T[thread_num].join();
 			}
