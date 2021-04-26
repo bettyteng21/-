@@ -32,42 +32,56 @@ public class HW07_4108056007_1 extends Buy_Phone
 		for (j=0; j<ans_index; ++j){
 			ans[j]=temp[j];
 		}
-		quickSort(ans, 0, ans.length-1);
+		sort(ans, 0, ans.length-1);
 		return ans;
 	}
 
-	static int partition(int[][] arr, int low, int high)
+	void merge(int[][] arr, int l, int m, int r)
 	{
-		int pivot = arr[high][0], i = (low - 1), temp1, temp2;
+		int n1 = m - l + 1, n2 = r - m;
+		int[][] L = new int[n1][2];
+		int[][] R = new int[n2][2];
 
-		for(int j = low; j <= high - 1; j++) {
-			if (arr[j][0] < pivot)
-			{
-				temp1=arr[++i][0];
-				arr[i][0]=arr[j][0];
-				arr[j][0]=temp1;
-				temp2=arr[i][1];
-				arr[i][1]=arr[j][1];
-				arr[j][1]=temp2;
+		for (int i = 0; i < n1; ++i)
+			L[i] = arr[l + i];
+		for (int j = 0; j < n2; ++j)
+			R[j] = arr[m + 1 + j];
+
+		int i = 0, j = 0, k = l;
+		while (i < n1 && j < n2) {
+			if (L[i][0] < R[j][0]) {
+				arr[k] = L[i]; i++;
 			}
-
+			else if (L[i][0] == R[j][0]){
+				if (L[i][1]>R[j][1]){
+					arr[k] = R[j]; j++;
+				}
+				else{
+					arr[k] = L[i]; i++;
+				}
+			}
+			else {
+				arr[k] = R[j]; j++;
+			}
+			k++;
 		}
-		temp1=arr[i+1][0];
-		arr[i+1][0]=arr[high][0];
-		arr[high][0]=temp1;
-		temp2=arr[i+1][1];
-		arr[i+1][1]=arr[high][1];
-		arr[high][1]=temp2;
 
-		return (i + 1);
+		while (i < n1) {
+			arr[k] = L[i]; i++; k++;
+		}
+
+		while (j < n2) {
+			arr[k] = R[j]; j++; k++;
+		}
 	}
 
-	static void quickSort(int[][] arr, int low, int high)
+	void sort(int[][] arr, int l, int r)
 	{
-		if (low < high) {
-			int pi = partition(arr, low, high);
-			quickSort(arr, low, pi - 1);
-			quickSort(arr, pi + 1, high);
+		if (l < r) {
+			int m =l+ (r-l)/2;
+			sort(arr, l, m);
+			sort(arr, m + 1, r);
+			merge(arr, l, m, r);
 		}
 	}
 }
