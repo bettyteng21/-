@@ -12,27 +12,24 @@ public class HW07_4108056007_1 extends Buy_Phone
 	}
 
 	public int[][] bestPhone(int[][] inputArr){
-		int j, ans_index=0;
-		int[][] temp = new int[inputArr.length][2];
-		boolean flag;
-		for (int i=0; i< inputArr.length-1; ++i) {
-			flag = false;
-			for (j = i + 1; j < inputArr.length; ++j) {
-				if (inputArr[i][0] <= inputArr[j][0] && inputArr[i][1] <= inputArr[j][1]) {
-					flag = true;
-					break;
-				}
-			}
-			if (!flag) {
-				temp[ans_index][0] = inputArr[i][0];
-				temp[ans_index++][1] = inputArr[i][1];
+		int j, len= inputArr.length, len_minus1= inputArr.length-1, i, ans_index=len_minus1;
+		sort(inputArr, 0, len_minus1);
+
+		int[][] temp = new int[len][2];
+		int max_of_y=inputArr[len_minus1][1];
+
+		temp[ans_index--]=inputArr[len_minus1];
+		for (i=len-2; i>=0; --i){
+			if (inputArr[i][1]>max_of_y) {
+				temp[ans_index--]=inputArr[i];
+				max_of_y=inputArr[i][1];
 			}
 		}
-		int[][] ans = new int[ans_index][2];
-		for (j=0; j<ans_index; ++j){
-			ans[j]=temp[j];
+
+		int[][] ans = new int[len_minus1-ans_index][2];
+		for (i=ans_index+1, j=0; i<len; ++i){
+			ans[j++]=temp[i];
 		}
-		sort(ans, 0, ans.length-1);
 		return ans;
 	}
 
@@ -42,36 +39,38 @@ public class HW07_4108056007_1 extends Buy_Phone
 		int[][] L = new int[n1][2];
 		int[][] R = new int[n2][2];
 
-		for (int i = 0; i < n1; ++i)
+		int i, j;
+		for (i = 0; i < n1; ++i)
 			L[i] = arr[l + i];
-		for (int j = 0; j < n2; ++j)
+		for (j = 0; j < n2; ++j)
 			R[j] = arr[m + 1 + j];
 
-		int i = 0, j = 0, k = l;
+		i = 0; j = 0;
+		int k = l;
 		while (i < n1 && j < n2) {
 			if (L[i][0] < R[j][0]) {
-				arr[k] = L[i]; i++;
+				arr[k] = L[i++];
 			}
 			else if (L[i][0] == R[j][0]){
 				if (L[i][1]>R[j][1]){
-					arr[k] = R[j]; j++;
+					arr[k] = R[j++];
 				}
 				else{
-					arr[k] = L[i]; i++;
+					arr[k] = L[i++];
 				}
 			}
 			else {
-				arr[k] = R[j]; j++;
+				arr[k] = R[j++];
 			}
-			k++;
+			++k;
 		}
 
 		while (i < n1) {
-			arr[k] = L[i]; i++; k++;
+			arr[k++] = L[i++];
 		}
 
 		while (j < n2) {
-			arr[k] = R[j]; j++; k++;
+			arr[k++] = R[j++];
 		}
 	}
 

@@ -1,11 +1,10 @@
-public class HW07_4108056007_2 extends Buy_Phone
+public class HW07_4108056007_3 extends Buy_Phone
 {
 	public static void main(String[] args){
-		HW07_4108056007_2 test= new HW07_4108056007_2();
+		HW07_4108056007_3 test= new HW07_4108056007_3();
 
-		//int[][] inputArr= {{1,1},{2,4},{2,10},{5,4},{4,8},{5,5},{8,4},{10,2},{10,1}};
-		int[][] inputArr= {{100,100},{100,100},{100,100},{5,4},{4,8},{5,5},{8,4},{10,2},{10,1}};
-
+	//	int[][] inputArr= {{1,1},{2,4},{2,10},{5,4},{4,8},{5,5},{8,4},{10,2},{10,1}};
+		int[][] inputArr= {{100,100},{100,100},{100,100},{101,4},{4,8},{5,5},{8,4},{10,2},{10,1}};
 		int[][] ans= test.bestPhone(inputArr);
 
 		for (int[] an : ans) {
@@ -14,26 +13,26 @@ public class HW07_4108056007_2 extends Buy_Phone
 	}
 
 	public int[][] bestPhone(int[][] inputArr){
-		int len= inputArr.length, len_minus1= inputArr.length-1, i, ans_index=0, curr=inputArr[len_minus1][1];
+		int j, len= inputArr.length, len_minus1= inputArr.length-1, i, ans_index=len_minus1;
 		sort(inputArr, 0, len_minus1);
 
 		int[][] temp = new int[len][2];
-		int[] max_of_y=new int[len_minus1];
-		for (i=len-2; i>=0; --i){
-			max_of_y[i]=curr;
-			if (inputArr[i][1]>curr) curr=inputArr[i][1];
-		}
+		int max_of_y=inputArr[len_minus1][1], max_of_x=inputArr[len_minus1][0];
 
-		for (i=0; i<len-1; ++i){
-			if (inputArr[i][1]>max_of_y[i]) {
-				temp[ans_index++]=inputArr[i];
+		temp[ans_index--]=inputArr[len_minus1];
+		for (i=len-2; i>=0; --i){
+			if (inputArr[i][1]>max_of_y && inputArr[i][0]<max_of_x) {
+				temp[ans_index--]=inputArr[i];
+				max_of_y=inputArr[i][1]; max_of_x=inputArr[i][0];
+			}
+			else if(inputArr[i][1]==max_of_y && inputArr[i][0]==max_of_x){
+				temp[ans_index--]=inputArr[i];
 			}
 		}
-		temp[ans_index++]=inputArr[len-1];
 
-		int[][] ans = new int[ans_index][2];
-		for (i=0; i<ans_index; ++i){
-			ans[i]=temp[i];
+		int[][] ans = new int[len-ans_index-1][2];
+		for (i=ans_index+1, j=0; i<len; ++i){
+			ans[j++]=temp[i];
 		}
 		return ans;
 	}
