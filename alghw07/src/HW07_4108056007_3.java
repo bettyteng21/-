@@ -2,7 +2,6 @@ public class HW07_4108056007_3 extends Buy_Phone
 {
 	public static void main(String[] args){
 		HW07_4108056007_3 test= new HW07_4108056007_3();
-
 	//	int[][] inputArr= {{1,1},{2,4},{2,10},{5,4},{4,8},{5,5},{8,4},{10,2},{10,1}};
 		int[][] inputArr= {{100,100},{100,100},{100,100},{101,4},{4,8},{5,5},{8,4},{10,2},{10,1}};
 		int[][] ans= test.bestPhone(inputArr);
