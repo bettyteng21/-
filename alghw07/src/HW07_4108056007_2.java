@@ -16,18 +16,18 @@ public class HW07_4108056007_2 extends Buy_Phone
 		sort(inputArr, 0, len_minus1);
 
 		int[][] temp = new int[len][2];
-		int[] max_of_y=new int[len];
-		max_of_y[len_minus1]= -2147483648;
+		int[] max_of_y=new int[len_minus1];
 		for (i=len-2; i>=0; --i){
 			max_of_y[i]=curr;
 			if (inputArr[i][1]>curr) curr=inputArr[i][1];
 		}
 
-		for (i=0; i<len; ++i){
+		for (i=0; i<len-1; ++i){
 			if (inputArr[i][1]>max_of_y[i]) {
-				temp[ans_index][0]=inputArr[i][0]; temp[ans_index++][1]=inputArr[i][1];
+				temp[ans_index++]=inputArr[i];
 			}
 		}
+		temp[ans_index++]=inputArr[len-1];
 
 		int[][] ans = new int[ans_index][2];
 		for (i=0; i<ans_index; ++i){
@@ -52,28 +52,28 @@ public class HW07_4108056007_2 extends Buy_Phone
 		int k = l;
 		while (i < n1 && j < n2) {
 			if (L[i][0] < R[j][0]) {
-				arr[k] = L[i]; i++;
+				arr[k] = L[i]; ++i;
 			}
 			else if (L[i][0] == R[j][0]){
 				if (L[i][1]>R[j][1]){
-					arr[k] = R[j]; j++;
+					arr[k] = R[j]; ++j;
 				}
 				else{
-					arr[k] = L[i]; i++;
+					arr[k] = L[i]; ++i;
 				}
 			}
 			else {
-				arr[k] = R[j]; j++;
+				arr[k] = R[j]; ++j;
 			}
 			k++;
 		}
 
 		while (i < n1) {
-			arr[k] = L[i]; i++; k++;
+			arr[k] = L[i]; ++i; ++k;
 		}
 
 		while (j < n2) {
-			arr[k] = R[j]; j++; k++;
+			arr[k] = R[j]; ++j; ++k;
 		}
 	}
 
