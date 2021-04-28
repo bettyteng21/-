@@ -1,5 +1,7 @@
 public class HW07_4108056007_3 extends Buy_Phone
 {
+	int[][] L; int[][] R; int[][] temp; int[][] ans;
+	int n1, n2, k, len, len_minus1, ans_index, max_of_x, max_of_y;
 	public static void main(String[] args){
 		HW07_4108056007_3 test= new HW07_4108056007_3();
 	//	int[][] inputArr= {{1,1},{2,4},{2,10},{5,4},{4,8},{5,5},{8,4},{10,2},{10,1}};
@@ -12,11 +14,12 @@ public class HW07_4108056007_3 extends Buy_Phone
 	}
 
 	public int[][] bestPhone(int[][] inputArr){
-		int j, len= inputArr.length, len_minus1= inputArr.length-1, i, ans_index=len_minus1;
+		int j, i;
+		len= inputArr.length; len_minus1= inputArr.length-1; ans_index=len_minus1;
 		sort(inputArr, 0, len_minus1);
 
-		int[][] temp = new int[len][2];
-		int max_of_y=inputArr[len_minus1][1], max_of_x=inputArr[len_minus1][0];
+		temp = new int[len][2];
+		max_of_y=inputArr[len_minus1][1]; max_of_x=inputArr[len_minus1][0];
 
 		temp[ans_index--]=inputArr[len_minus1];
 		for (i=len-2; i>=0; --i){
@@ -29,7 +32,7 @@ public class HW07_4108056007_3 extends Buy_Phone
 			}
 		}
 
-		int[][] ans = new int[len-ans_index-1][2];
+		ans = new int[len-ans_index-1][2];
 		for (i=ans_index+1, j=0; i<len; ++i){
 			ans[j++]=temp[i];
 		}
@@ -38,9 +41,9 @@ public class HW07_4108056007_3 extends Buy_Phone
 
 	void merge(int[][] arr, int l, int m, int r)
 	{
-		int n1 = m - l + 1, n2 = r - m;
-		int[][] L = new int[n1][2];
-		int[][] R = new int[n2][2];
+		n1 = m - l + 1; n2 = r - m;
+		L = new int[n1][2];
+		R = new int[n2][2];
 
 		int i, j;
 		for (i = 0; i < n1; ++i)
@@ -48,8 +51,7 @@ public class HW07_4108056007_3 extends Buy_Phone
 		for (j = 0; j < n2; ++j)
 			R[j] = arr[m + 1 + j];
 
-		i = 0; j = 0;
-		int k = l;
+		i = 0; j = 0; k = l;
 		while (i < n1 && j < n2) {
 			if (L[i][0] < R[j][0]) {
 				arr[k] = L[i++];
