@@ -16,7 +16,7 @@ public class HW08_4108056007_1 extends Buy_Phone_v2
 	}
 	public int[][] bestPhone(int[][] inputArr){
 		final int len= inputArr.length, len_minus1= len-1;
-		int total=len_minus1;
+		int total=len_minus1, j, i;
 		boolean flag=false;
 		sort(inputArr, 0,len_minus1);
 
@@ -25,8 +25,8 @@ public class HW08_4108056007_1 extends Buy_Phone_v2
 		int[][] temp= new int[len][6];
 		System.arraycopy(inputArr[len_minus1], 0, temp[total--], 0, 6);
 
-		for (int i= len-2; i>=0; --i){
-			for (int j=1; j<6; ++j){
+		for (i= len-2; i>=0; --i){
+			for (j=1; j<6; ++j){
 				if (inputArr[i][j]>max_of_y[j]) {
 					max_of_y[j]=inputArr[i][j]; flag=true;
 				}
@@ -38,7 +38,7 @@ public class HW08_4108056007_1 extends Buy_Phone_v2
 		}
 
 		int[][] ans= new int[len_minus1-total][6];
-		for (int i=total+1, j=0; i<len; ++i){
+		for (i=total+1, j=0; i<len; ++i){
 			System.arraycopy(temp[i], 0, ans[j++], 0, 6);
 		}
 		return ans;
