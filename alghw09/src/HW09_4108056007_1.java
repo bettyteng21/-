@@ -30,18 +30,16 @@ public class HW09_4108056007_1 extends LSD{
 
         int dequeue(){
             if (isEmpty(this)) return Integer.MIN_VALUE;
-
             int item= array[front];
             front= ((front+1)%capacity);
             size= size-1;
             return item;
         }
-
     }
 
     class Graph{
         private final ArrayList<ArrayList<Integer>> node;
-        int V;
+        final int V;
         public Graph(int V){
             this.V=V;
             this.node= new ArrayList<>(V);
@@ -71,7 +69,7 @@ public class HW09_4108056007_1 extends LSD{
             dist= new int[V];
             int i;
             for (i=0; i<V; ++i){
-                dist[i] = Integer.MAX_VALUE;
+                dist[i] = 2147483647;
                 pred[i] = -1;
             }
 
@@ -82,7 +80,6 @@ public class HW09_4108056007_1 extends LSD{
             int vis, curr_index;
             while (!q.isEmpty(q)){
                 vis= q.dequeue();
-
                 for (i=0; i<node.get(vis).size(); ++i){
                     curr_index=node.get(vis).get(i);
                     if(!visited[curr_index]){
@@ -93,11 +90,10 @@ public class HW09_4108056007_1 extends LSD{
                     }
                 }
                 for (i=0; i<V; ++i){
-                    if(dist[i]>LS && dist[i]!=Integer.MAX_VALUE) LS=dist[i];
+                    if(dist[i]>LS && dist[i]!=2147483647) LS=dist[i];
                 }
             }
         }
-
     }
 
     public int Distance(int[][] array){
@@ -116,7 +112,7 @@ public class HW09_4108056007_1 extends LSD{
         graph.find_max_degree();
         graph.BFS();
         for (i=1, curr=dist[0]; i<V; ++i){
-            if(dist[i]>curr && dist[i]!=Integer.MAX_VALUE){
+            if(dist[i]>curr && dist[i]!=2147483647){
                 max_degree=i;
                 curr=dist[i];
             }
