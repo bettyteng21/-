@@ -1,74 +1,65 @@
 import java.util.Collections;
 import java.util.ArrayList;
 import java.util.Stack;
-public class HW09_4108056007_2 extends LSD{
+public class HW09_4108056007_3 extends LSD{
     int max_degree=0, LS=0;
-    Stack<Integer> pushStack= new Stack<>();
-    Stack<Integer> popStack= new Stack<>();
+    final int capacity=100000;
+    ArrayList<ArrayList<Integer>> node;
     Stack<Integer> endPoints= new Stack<>();
     public static void main(String[] args){
-        HW09_4108056007_2 test= new HW09_4108056007_2();
+        HW09_4108056007_3 test= new HW09_4108056007_3();
         int[][] array={{0,1},{0,2},{0,4},{1,3},{1,4},{2,5},{6,7}};
         System.out.println(test.Distance(array));
     }
 
+    class Queue{
+        int front=0, size=0, rear=capacity-1;
+        int[] array= new int[capacity];
+
+        boolean isFull(Queue queue) {
+            return (queue.size == capacity);
+        }
+        boolean isEmpty(Queue queue){
+            return (queue.size==0);
+        }
+
+        void enqueue(int item){
+            if(isFull(this)) return;
+            this.rear= ((this.rear+1)%capacity);
+            this.array[this.rear]=item;
+            this.size= this.size+1;
+        }
+
+        int dequeue(){
+            if (isEmpty(this)) return Integer.MIN_VALUE;
+            int item= this.array[this.front];
+            this.front= ((this.front+1)%capacity);
+            this.size= this.size-1;
+            return item;
+        }
+    }
+
     class Graph{
-        private final ArrayList<ArrayList<Integer>> node;
-        int V;
+        final int V;
         public Graph(int V){
             this.V=V;
-            this.node= new ArrayList<>(V);
-            for (int i=0; i<V; ++i){
-                node.add(new ArrayList<>());
-            }
-        }
-
-        void addEdge(int u, int v){
-            this.node.get(u).add(v);
-            this.node.get(v).add(u);
-        }
-
-        void find_max_degree(){
-            int degree_size=0;
-            for (int i=0; i<V; ++i){
-                if (node.get(i).size()>degree_size) {
-                    max_degree=i; degree_size=node.get(i).size();
-                }
-            }
-        }
-
-        public void push_queue(int x) {
-            while (!popStack.isEmpty()) {
-                pushStack.push(popStack.pop());
-            }
-            pushStack.push(x);
-        }
-
-        public int pop_queue() {
-            while (!pushStack.isEmpty()) {
-                popStack.push(pushStack.pop());
-            }
-            return popStack.pop();
-        }
-
-        public boolean empty_queue() {
-            return pushStack.isEmpty() && popStack.isEmpty();
         }
 
         public void BFS(){ //start= max_degree
             boolean[] visited= new boolean[V];
-            push_queue(max_degree);
+            Queue q= new Queue();
+            q.enqueue(max_degree);
             visited[max_degree]= true;
 
             int vis, curr_index, flag, i;
-            while (!empty_queue()){
+            while (!q.isEmpty(q)){
                 flag=0;
-                vis= pop_queue();
+                vis= q.dequeue();
 
                 for (i=0; i<node.get(vis).size(); ++i){
                     curr_index=node.get(vis).get(i);
                     if(!visited[curr_index]){
-                        push_queue(curr_index);
+                        q.enqueue(curr_index);
                         visited[curr_index]=true;
                     }
                     else flag++;
@@ -80,8 +71,7 @@ public class HW09_4108056007_2 extends LSD{
         }
 
         public void longest_shortest(){
-            pushStack.clear();
-            popStack.clear();
+            Queue q= new Queue();
             boolean[] visited;
             int[] pred;
             int[] dist;
@@ -93,16 +83,16 @@ public class HW09_4108056007_2 extends LSD{
                 pred = new int[V];
                 dist = new int[V];
                 for (i=0; i<V; ++i){
-                    dist[i] = Integer.MAX_VALUE;
+                    dist[i] = 2147483647;
                     pred[i] = -1;
                 }
 
-                push_queue(curr_node);
+               q.enqueue(curr_node);
                 visited[curr_node]= true;
                 dist[curr_node]=0;
 
-                while (!empty_queue()){
-                    vis= pop_queue();
+                while (!q.isEmpty(q)){
+                    vis= q.dequeue();
 
                     for (i=0; i<node.get(vis).size(); ++i){
                         curr_index=node.get(vis).get(i);
@@ -110,13 +100,12 @@ public class HW09_4108056007_2 extends LSD{
                             visited[curr_index]=true;
                             dist[curr_index]=dist[vis]+1;
                             pred[curr_index]=vis;
-                            push_queue(curr_index);
-
+                            q.enqueue(curr_index);
                         }
                     }
                 }
                 for (i=0; i<V; ++i){
-                    if(dist[i]>LS && dist[i]!=Integer.MAX_VALUE) {
+                    if(dist[i]>LS && dist[i]!=2147483647) {
                         LS=dist[i];
                     }
                 }
@@ -133,15 +122,24 @@ public class HW09_4108056007_2 extends LSD{
         V+=1;
 
         Graph graph= new Graph(V);
+        node= new ArrayList<>(V);
+        for (i=0; i<V; ++i){
+            node.add(new ArrayList<>());
+        }
         for (i=0; i<array.length; ++i){
-            graph.addEdge(array[i][0], array[i][1]);
+            node.get(array[i][0]).add(array[i][1]);
+            node.get(array[i][1]).add(array[i][0]);
         }
 
-        graph.find_max_degree();
+        int degree_size=0;
+        for (i=0; i<V; ++i){
+            if (node.get(i).size()>degree_size) {
+                max_degree=i; degree_size=node.get(i).size();
+            }
+        }
 
         graph.BFS();
         graph.longest_shortest();
-
         return LS;
     }
 }

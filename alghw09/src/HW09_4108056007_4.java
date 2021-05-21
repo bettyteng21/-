@@ -1,9 +1,9 @@
-public class HW09_4108056007_1 extends LSD{
-    int max_degree=0, LS=0, V=0, vis;
+public class HW09_4108056007_4 extends LSD{
+    int max_degree=0, LS=0, V=0;
     final int capacity=100000;
-
+    Queue second= new Queue();
     public static void main(String[] args){
-        HW09_4108056007_1 test= new HW09_4108056007_1();
+        HW09_4108056007_4 test= new HW09_4108056007_4();
         int[][] array={{0,1},{0,2},{0,4},{1,3},{1,4},{2,5},{6,7}};
         System.out.println(test.Distance(array));
     }
@@ -45,66 +45,76 @@ public class HW09_4108056007_1 extends LSD{
         }
     }
 
-    public void BFS(Node[] adj_list){ //start= max_degree
-        boolean[] visited= new boolean[V];
-        Queue q= new Queue();
-        q.enqueue(max_degree);
-        visited[max_degree]= true;
+        public void BFS(Node[] adj_list){ //start= max_degree
+            boolean[] visited= new boolean[V];
+            Queue q= new Queue();
+            q.enqueue(max_degree);
+            visited[max_degree]= true;
 
-        Node temp;
-        int  curr_index;
-        while (!q.isEmpty(q)){
-            vis= q.dequeue();
-
-            temp=adj_list[vis];
-            while(temp!=null){
-                curr_index=temp.key;
-                if(!visited[curr_index]){
-                    visited[curr_index]=true;
-                    q.enqueue(curr_index);
-                }
-                temp=temp.next;
-            }
-        }
-    }
-
-    public void longest_shortest(Node[] adj_list){
-        Queue q= new Queue();
-        boolean[] visited;
-        int[] pred;
-        int[] dist;
-        int i, curr_index;
-
-            visited= new boolean[V];
-            dist = new int[V];
-            for (i=0; i<V; ++i){
-                dist[i] = 2147483647;
-            }
-
-            q.enqueue(vis);
-            visited[vis]= true;
-            dist[vis]=0;
-
+            Node temp;
+            int vis, curr_index, flag, size;
             while (!q.isEmpty(q)){
+                flag=0; size=0;
                 vis= q.dequeue();
 
-                Node temp=adj_list[vis];
+                temp=adj_list[vis];
                 while(temp!=null){
                     curr_index=temp.key;
+                    size++;
                     if(!visited[curr_index]){
                         visited[curr_index]=true;
-                        dist[curr_index]=dist[vis]+1;
                         q.enqueue(curr_index);
                     }
+                    else flag++;
                     temp=temp.next;
                 }
+                if (flag==size) second.enqueue(vis);
             }
-            for (i=0; i<V; ++i){
-                if(dist[i]>LS && dist[i]!=2147483647) {
-                    LS=dist[i];
+        }
+
+        public void longest_shortest(Node[] adj_list){
+            Queue q= new Queue();
+            boolean[] visited;
+            int[] pred;
+            int[] dist;
+            int curr_node, i, vis, curr_index;
+
+            while (!second.isEmpty(second)){
+                curr_node= second.dequeue();
+                visited= new boolean[V];
+                pred = new int[V];
+                dist = new int[V];
+                for (i=0; i<V; ++i){
+                    dist[i] = 2147483647;
+                    pred[i] = -1;
+                }
+
+                q.enqueue(curr_node);
+                visited[curr_node]= true;
+                dist[curr_node]=0;
+
+                while (!q.isEmpty(q)){
+                    vis= q.dequeue();
+
+                    Node temp=adj_list[vis];
+                    while(temp!=null){
+                        curr_index=temp.key;
+                        if(!visited[curr_index]){
+                            visited[curr_index]=true;
+                            dist[curr_index]=dist[vis]+1;
+                            pred[curr_index]=vis;
+                            q.enqueue(curr_index);
+                        }
+                        temp=temp.next;
+                    }
+                }
+                for (i=0; i<V; ++i){
+                    if(dist[i]>LS && dist[i]!=2147483647) {
+                        LS=dist[i];
+                    }
                 }
             }
-    }
+        }
 
 
     public int Distance(int[][] array){
