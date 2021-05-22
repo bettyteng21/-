@@ -1,6 +1,6 @@
 public class HW09_4108056007_5 extends LSD{
     final int capacity=100000;
-    int max_degree=0, LS=0, V=0, vis, front, size, rear=capacity-1;
+    int max_degree, LS=0, vis, front, size, rear=capacity-1;
     int[] array;
 
     public static void main(String[] args){
@@ -19,54 +19,45 @@ public class HW09_4108056007_5 extends LSD{
         }
     }
 
-        boolean isFull() {
-            return (size == capacity);
-        }
-        boolean isEmpty(){
-            return (size==0);
-        }
+    void enqueue(int item){
+        if(size == capacity) return;
+        rear= ((rear+1)%capacity);
+        array[rear]=item;
+        ++size;
+    }
 
-        void enqueue(int item){
-            if(isFull()) return;
-            rear= ((rear+1)%capacity);
-            array[rear]=item;
-            ++size;
-        }
-
-        int dequeue(){
-            if (isEmpty()) return 2147483647;
-            int item= array[front];
-            front= ((front+1)%capacity);
-            --size;
-            return item;
-        }
+    int dequeue(){
+        if (size==0) return 2147483647;
+        int item= array[front];
+        front= ((front+1)%capacity);
+        --size;
+        return item;
+    }
 
     public int Distance(int[][] input_arr){
-        int i;
+        int i, V, s=0, max_size=0, curr_index;
         final int len=input_arr.length;
+        Node temp;
         for (i=0, V=0; i<len; ++i){
             if(input_arr[i][0]>V) V=input_arr[i][0];
             if (input_arr[i][1]>V) V=input_arr[i][1];
         }
         ++V;
 
-        Node node;
         Node[] adj_list= new Node[V];
         for (i=0; i<len; ++i){
-            node= new Node(input_arr[i][0]);
-            node.next=adj_list[input_arr[i][1]];
-            adj_list[input_arr[i][1]]=node;
-            node= new Node(input_arr[i][1]);
-            node.next=adj_list[input_arr[i][0]];
-            adj_list[input_arr[i][0]]=node;
+            temp= new Node(input_arr[i][0]);
+            temp.next=adj_list[input_arr[i][1]];
+            adj_list[input_arr[i][1]]=temp;
+            temp= new Node(input_arr[i][1]);
+            temp.next=adj_list[input_arr[i][0]];
+            adj_list[input_arr[i][0]]=temp;
         }
 
-        int s=0, max_size=0;
-        Node temp;
         for (i=0; i<V; ++i, s=0){
             temp=adj_list[i];
             while (temp!=null){
-                s++;
+                ++s;
                 temp=temp.next;
             }
             if (max_size<s){
@@ -79,10 +70,8 @@ public class HW09_4108056007_5 extends LSD{
         array= new int[capacity];
         enqueue(max_degree);
         visited[max_degree]= true;
-        int  curr_index;
-        while (!isEmpty()){
+        while (size!=0){
             vis= dequeue();
-
             temp=adj_list[vis];
             while(temp!=null){
                 curr_index=temp.key;
@@ -96,17 +85,15 @@ public class HW09_4108056007_5 extends LSD{
 
         front=0; size=0; rear=capacity-1;
         array= new int[capacity];
-
-        int[] dist;
+        int[] dist =new int[V];
         visited= new boolean[V];
-        dist = new int[V];
         for (i=0; i<V; ++i){
             dist[i] = 2147483647;
         }
         enqueue(vis);
         visited[vis]= true;
         dist[vis]=0;
-        while (!isEmpty()){
+        while (size!=0){
             vis= dequeue();
             temp=adj_list[vis];
             while(temp!=null){
@@ -120,9 +107,7 @@ public class HW09_4108056007_5 extends LSD{
             }
         }
         for (i=0; i<V; ++i){
-            if(dist[i]>LS && dist[i]!=2147483647) {
-                LS=dist[i];
-            }
+            if(dist[i]>LS && dist[i]!=2147483647) LS=dist[i];
         }
         return LS;
     }
