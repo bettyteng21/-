@@ -71,7 +71,6 @@ public class HW09_4108056007_1 extends LSD{
     public void longest_shortest(Node[] adj_list){
         Queue q= new Queue();
         boolean[] visited;
-        int[] pred;
         int[] dist;
         int i, curr_index;
 
