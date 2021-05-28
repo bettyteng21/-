@@ -1,5 +1,14 @@
 # 109學年下學期 演算法作業
 ## alghw10 - sorting
+```
+Your program will take an integer array as input. 
+Please return the sorted ascending array in the given array.
+Input: [-1,2,5,9,8,7,1,3,2]
+Output: [-1,1,2,2,3,5,7,8,9]
+```
+
+就是最最最基本的sorting (不提供側資特徵)
+
 
 ## alghw09 - longest shortest path (LSP)
 題目:
