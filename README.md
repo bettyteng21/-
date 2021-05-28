@@ -30,6 +30,8 @@ Output: 4
 答案就是node1、node2之間的distance\
 (概念像是，我一開始找中間點，第一次BFS去找到邊緣點，第二次找邊緣點到另一端的邊緣點)
 
+排名36\
+![image](hw9_rank.png)
 
 ## alghw08 - buy phone version2
 題目:
@@ -53,6 +55,10 @@ Output: [[7,5,6,9,8,9],[8,7,7,4,2,1]]
 
 ![image](hw8例外測資.png)
 
+
+排名26\
+![image](hw8_rank.png)
+
 ## alghw07 - buy phone
 ```
 Your program will take a two-dimensional integer array as input. 
@@ -68,6 +74,10 @@ Output: [[2,10],[4,8],[5,5],[8,4],[10,2]]
 若下一個array有任一項大於max，則把該array加入答案，且更新max的值
 
 因為這次只有二維，所以不會有像hw8的例外情況!
+建議可以多觀察助教的測資~~(或是跟神人同學要他去後台抓的測資)~~
+
+排名85(後來有用同學賭一把的寫法，排名2，但正規寫法就是85)\
+![image](hw7_rank.png)
 
 ## alghw06 - dessert desert
 ```
@@ -84,5 +94,8 @@ Input: [[1, 1, 1, 1, 1, 1, 1],
         [2, 1, 3, 2]]
 Output: [7, 5, 3, 1, 2]
 ```
+
+排名19\
+![image](hw6_rank.png)
 
 ## ....剩下等有空再更新
