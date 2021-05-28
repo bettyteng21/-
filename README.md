@@ -25,6 +25,12 @@ Output: 4
 
 簡單來說，就是從所有點中任取兩點(前提是他們有相連)，記錄他們的shortest path，然後從這些長度裡找**最大**的，就是答案
 
+我是參考學長姊的作法，挑出裡面degree最大的node (助教測資給得漂亮，所以我就直接預設找到的這個node在"最多node的block"上)\
+從該點出發做BFS，找離它最遠的點(node1)，再從那最遠的點出發，做第二次BFS，找離它最遠的點(node2)\
+答案就是node1、node2之間的distance\
+(概念像是，我一開始找中間點，第一次BFS去找到邊緣點，第二次找邊緣點到另一端的邊緣點)
+
+
 ## alghw08 - buy phone version2
 題目:
 ```
@@ -37,11 +43,30 @@ Output: [[7,5,6,9,8,9],[8,7,7,4,2,1]]
 ```
 上次作業的延伸，只是變成多維版本
 
+概念和上次作業差不多\
+先排序(使用stable的sorting，先排最左，依序往右)\
+我是設一個陣列max來儲存目前出現過最大的值，往前比較\
+若下一個array有任一項大於max，則把該array加入答案，且更新max的值
 
+**這次助教給的側資都很漂亮，所以才不用使用到暴力解，例外測資(如下圖)跑我的code會直接爆掉喔喔喔**\
+問了學霸們，他們說如果有這種測資就要暴力解惹
 
-這次助教給的側資都很漂亮，所以才不用使用到暴力解，例外測資(如下圖)跑我的code會直接爆掉喔喔喔
-問了學霸們，他們說如果有這種測資就要暴力解惹@@
 ![image](hw8例外測資.png)
 
 ## alghw07 - buy phone
+```
+Your program will take a two-dimensional integer array as input. 
+Each element represents a smartphone model which contains two features (e.g., screen size and performance ranking).
+Please return an array containing a list of unbeatable smartphone models (In other words, filter out the phone models that can be beat by some model).
+Given two items A =(Xa, Ya) and B =(Xb, Yb), Item A beats Item B iff xa≥xb and ya≥yb
+Input: [[1,1],[2,4],[2,10],[5,4],[4,8],[5,5],[8,4],[10,2],[10,1]]
+Output: [[2,10],[4,8],[5,5],[8,4],[10,2]]
+```
+
+先排序(使用stable的sorting，先排最左，依序往右)\
+我是設一個int max來儲存目前出現過最大的y，往前比較\
+若下一個array有任一項大於max，則把該array加入答案，且更新max的值
+
+因為這次只有二維，所以不會有像hw8的例外情況!
+
 ## ....剩下等有空再更新
