@@ -74,11 +74,11 @@ Output: [[2,10],[4,8],[5,5],[8,4],[10,2]]
 若下一個array有任一項大於max，則把該array加入答案，且更新max的值
 
 因為這次只有二維，所以不會有像hw8的例外情況!
-建議可以多觀察助教的測資~~(或是跟神人同學要他去後台抓的測資)~~
+建議可以多觀察助教的測資 <strike>或是跟神人同學要他去後台抓的測資</strike>
 
 排名85(後來有用同學賭一把的寫法，排名2，但正規寫法就是85)\
 ![image](hw7_rank.png)
-
+        
 ## alghw06 - dessert desert
 ```
 Your program will take an integer arrays as input.
