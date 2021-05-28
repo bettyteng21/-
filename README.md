@@ -69,4 +69,20 @@ Output: [[2,10],[4,8],[5,5],[8,4],[10,2]]
 
 因為這次只有二維，所以不會有像hw8的例外情況!
 
+## alghw06 - dessert desert
+```
+Your program will take an integer arrays as input.
+Please return the maximum possible number of blocks in a valid partitioning. 
+A valid partitioning of the integer array is defined as follows. 
+1. The numbers are split into blocks — groups of consecutive numbers. The blocki,j consists of number ni, ni + 1, ..., nj. A block can have only a single number.
+2. Every number belongs to one block only.
+3. The partitioning should satisfy the condition that after each block is sorted, the whole sequence becomes sorted as well.
+Input: [[1, 1, 1, 1, 1, 1, 1],
+        [1, 3, 5, 7, 9],
+        [1, 2, 3],
+        [5, 4, 3, 2, 1],
+        [2, 1, 3, 2]]
+Output: [7, 5, 3, 1, 2]
+```
+
 ## ....剩下等有空再更新
