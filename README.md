@@ -37,7 +37,7 @@ Output: 4
 題目:
 ```
 Your program will take a six-dimensional integer array as input. 
-Each element represents a smartphone model which contains two features (e.g., screen size and performance ranking).
+Each element represents a smart phone model which contains two features (e.g., screen size and performance ranking).
 Please return an sorted array containing a list of unbeatable smartphone models (In other words, filter out the phone models that can be beaten by some model).
 The return array should be sorted by the first element of each array in the output. 
 Input: [[8,7,7,4,2,1],[2,4,4,6,2,1],[4,0,5,1,3,2],[5,2,4,3,7,3],[7,5,6,9,8,9]]
@@ -95,7 +95,81 @@ Input: [[1, 1, 1, 1, 1, 1, 1],
 Output: [7, 5, 3, 1, 2]
 ```
 
+最多可以切幾刀，讓切完後的每一塊排序後接起來是sorted array\
+例子: 
+`[1, 3, 5, 7, 9]` 切五刀(每個element後面各一刀)。
+`[2, 1, 3, 2]` 切一刀(切在1後面和最後一個element後面)
+
+[Leetcode上有差不多的題目](https://massivealgorithms.blogspot.com/2019/02/leetcode-768-max-chunks-to-make-sorted.html)
+
 排名19\
 ![image](hw6_rank.png)
 
-## ....剩下等有空再更新
+## alghw05 - lianliankan
+```
+Your program will take a set that consists of two-dimensional points as input. Please determine whether the given set containing three points lie in a line.
+Input: [[1111,1111],[2222,2222],[3333,3333]]
+Output: true
+```
+固定一點，找它和其他點的斜率，記錄到自己實作hash map(不用hash map也行，但hash map的find複雜度低)，找有沒有一樣的斜率
+
+BTW 助教測資都剛好給到**三點連線會通過原點**，所以可以固定原點去跑就好 <strike>(太晚知道這個祕密惹QQ)</strike>
+
+排名17\
+![image](hw5_rank.png)
+
+## alghw04 - one 0k rock
+```
+Your program will take a bunch of string arrays as input.
+Please determine whether a given array comes from {0k1k | k ∈ Z+ }
+( the input arrays do not contain empty string and non 0,1 characters)
+For example,
+1.Input: ["0011",”00111” ] , Output: [true,false]
+2.Input: ["01",”1100” ,”1111”] , Output: [true,false,false]
+```
+
+從中間開始往外比較，若有錯誤就break
+
+排名6\
+![image](hw4_rank.png)
+
+## alghw03 - hill finding
+```
+Input: An array. In this mission we  find the peak of the array, then find out which cutting position of the array which could produce a sorted array .
+Final return: Cutting position of the array
+TestCase(input) will not include arrays like:
+1. 888888(All same)
+2. 1234567(whole ascending) . 
+Input: [1,1,1,1,1,8,1,1]
+Output: 1
+```
+**注意是return排好後那一刀的index**\
+```
+例: [1,1,1,1,1,8,1,1] -> [1,1,1,1,1,1,1,8]
+                ^            ^
+return= 1
+```
+
+排名73\
+![image](hw3_rank.png)
+
+## alghw02 - three sum
+```
+計算陣列中任意三個數字相加為零的組合數(數組中不會有重複的數字)
+Example:
+Input: [-1,1,2,4,8,-3]
+Output: 2 (分別是(1,2,-3以及(-1,4,-3)2組)
+```
+
+[網上有差不多的](https://www.geeksforgeeks.org/find-a-triplet-that-sum-to-a-given-value/)
+
+排名39\
+![image](hw2_rank.png)
+
+## alghw01 - array data
+```
+分別求Array的最大值和最小值
+Example:
+Input: [1,2,3]
+Output: Max = 3, Min = 1
+```
