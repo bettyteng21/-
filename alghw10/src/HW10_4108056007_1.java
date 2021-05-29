@@ -14,7 +14,8 @@ public class HW10_4108056007_1 extends SortingArray{
         int pivot = arr[high], i = (low - 1), temp;
         for(int j = low; j <= high - 1; ++j) {
             if (arr[j] < pivot) {
-                temp = arr[++i];
+                i++;
+                temp = arr[i];
                 arr[i] = arr[j];
                 arr[j] = temp;
             }
