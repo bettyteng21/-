@@ -13,17 +13,17 @@ public class HW10_4108056007_2 extends SortingArray{
         if (A == null) {
             return null;
         }
-        int mid, i, j, k;
+        int mid, i, j, k, len=A.length;
         int[] left, right;
-        if (A.length > 1) {
-            mid = A.length / 2;
+        if (len > 1) {
+            mid = len / 2;
             left = new int[mid];
             for (i=0; i < mid; ++i) {
                 left[i] = A[i];
             }
 
-            right = new int[A.length - mid];
-            for (i = mid; i < A.length; ++i) {
+            right = new int[len - mid];
+            for (i = mid; i < len; ++i) {
                 right[i-mid]= A[i];
             }
             sorting(left);
