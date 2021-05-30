@@ -9,7 +9,8 @@ Input: [-1,2,5,9,8,7,1,3,2]
 Output: [-1,1,2,2,3,5,7,8,9]
 ```
 
-就是最最最基本的sorting (不提供側資特徵)
+就是最最最基本的sorting (不提供側資特徵)\
+目前丟上去的sorting有merge, tim, quick(會stack overflow), 3way quick(會stack overflow), multi-thread merge(尚未測)
 
 
 ## alghw09 - longest shortest path (LSP)
@@ -145,7 +146,7 @@ TestCase(input) will not include arrays like:
 Input: [1,1,1,1,1,8,1,1]
 Output: 1
 ```
-**注意是return排好後那一刀的index**\
+**注意是return排好後那一刀的index**
 ```
 例: [1,1,1,1,1,8,1,1] -> [1,1,1,1,1,1,1,8]
                 ^            ^
