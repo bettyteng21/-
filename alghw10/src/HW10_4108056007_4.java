@@ -67,15 +67,21 @@ public class HW10_4108056007_4 extends SortingArray{
 
     public int[] sorting(int[] A) {
         int minRun = minRunLength(MIN_MERGE), n=A.length;
-
         for (int i = 0; i < n; i += minRun) {
-            insertionSort(A, i, Math.min((i+MIN_MERGE-1), (n-1)));
+            if((i+MIN_MERGE-1)<(n-1)){
+                insertionSort(A, i, (i+MIN_MERGE-1));
+            }
+            else insertionSort(A, i, (n-1));
         }
 
-        for (int size = minRun, mid, right, left; size < n; size*=2) {
-            for (left = 0; left < n; left += (2*size)) {
+        for (int size = minRun, mid, right, left; size < n; size=(size<<1)) {
+            for (left = 0; left < n; left += (size<<1)) {
                 mid = (left+size-1);
-                right = Math.min((left+(2* size)-1), (n-1));
+                if((left+(size<<1)-1)<(n-1)){
+                    right= (left+(size<<1)-1);
+                }
+                else right= (n-1);
+
                 if(mid<right) merge(A, left, mid, right);
             }
         }
