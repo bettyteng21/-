@@ -14,7 +14,7 @@ public class HW10_4108056007_5 extends SortingArray{
 
         int i, j, k, len=(finish-start+1), count, left_len, right_len;
         if (len > 1) {
-            int mid = len/2;
+            int mid = len>>>1;
             int[] left = new int[mid];
             left_len= left.length;
             for (i=start, count=0; i<(mid+start); ++i) {
@@ -80,7 +80,7 @@ public class HW10_4108056007_5 extends SortingArray{
 
     public int[] sorting(int[] A){
         Thread[] T = new Thread[4];
-        final int thread_len= A.length/4, final_index=A.length-1;
+        final int thread_len= A.length>>>2, final_index=A.length-1;
         int thread_num;
         for (thread_num=0; thread_num<4; ++thread_num){
             int curr_thread = thread_num;
@@ -100,9 +100,9 @@ public class HW10_4108056007_5 extends SortingArray{
             }
             catch (InterruptedException e) {}
         }
-        thread_merge(A, 0, thread_len-1, thread_len, (2*thread_len)-1);
-        thread_merge(A, (2*thread_len), (3*thread_len)-1, (3*thread_len), final_index);
-        thread_merge(A, 0, (2*thread_len)-1, (2*thread_len), final_index);
+        thread_merge(A, 0, thread_len-1, thread_len, (thread_len<<1)-1);
+        thread_merge(A, (thread_len<<1), (3*thread_len)-1, (3*thread_len), final_index);
+        thread_merge(A, 0, (thread_len<<1)-1, (thread_len<<1), final_index);
         return A;
     }
 }
