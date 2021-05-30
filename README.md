@@ -145,7 +145,7 @@ TestCase(input) will not include arrays like:
 Input: [1,1,1,1,1,8,1,1]
 Output: 1
 ```
-**注意是return排好後那一刀的index**\
+**注意是return排好後那一刀的index**
 ```
 例: [1,1,1,1,1,8,1,1] -> [1,1,1,1,1,1,1,8]
                 ^            ^
