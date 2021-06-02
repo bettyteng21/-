@@ -8,37 +8,42 @@ public class HW10_4108056007_2 extends SortingArray{
         }
         System.out.println();
     }
-
-    void merge(int[] arr, int l, int m, int r)
+    void merge(int arr[], int l, int m, int r)
     {
-        if (arr[m-1]<=arr[m]) return;
-        int n2 = r-m, i;
-        int[] temp= new int[r-l];
-        System.arraycopy(arr, l, temp, 0, r-l);
+        int n1 = m - l + 1, n2 = r - m, i, j, k;
+        if (arr[l+n1-1]<= arr[l+n1]) return;
 
-        i = 0;
-        int j = 0, k = l;
-        while (i != m && j != n2) {
-            if (temp[i] <= temp[j]) {
-                arr[k++] = temp[i++];
+        int[] L= new int[n1];
+        int[] R= new int[n2];
+
+        for (i = 0; i < n1; i++)
+            L[i] = arr[l + i];
+        for (j = 0; j < n2; j++)
+            R[j] = arr[m + 1 + j];
+
+        i = 0; j = 0; k = l;
+        while (i < n1 && j < n2) {
+            if (L[i] <= R[j]) {
+                arr[k] = L[i++];
             }
             else {
-                arr[k++] = temp[j++];
+                arr[k] = R[j++];
             }
+            k++;
         }
 
-        while (i < m) {
-            arr[k++] = temp[i++];
+        while (i < n1) {
+            arr[k++] = L[i++];
         }
 
         while (j < n2) {
-            arr[k++] = temp[j++];
+            arr[k++] = R[j++];
         }
     }
 
     void sort(int arr[], int l, int r)
     {
-        if (r-l < 10){
+        if ((r-l) < 10){
             for (int i = l + 1, temp, j; i<=r; ++i) {
                 temp = arr[i];
                 j= i-1;
@@ -50,14 +55,13 @@ public class HW10_4108056007_2 extends SortingArray{
             return;
         }
 
-        int m =((l+r)>>>2);
+        int m =l+((r-l)>>>2);
         sort(arr, l, m);
         sort(arr, m + 1, r);
         merge(arr, l, m, r);
     }
 
     public int[] sorting(int[] A){
-        if (A == null) return null;
         sort(A, 0, A.length-1);
         return A;
     }
