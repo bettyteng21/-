@@ -7,6 +7,7 @@
 Your program will take two string array as input. 
 The points corresponding to the same index in the array will be connected to form an edge.
 Please return the number of the groups in the given array.
+![image](hw11_example.png)
 ```
 範例:\
 ![image](hw11_example.png)
