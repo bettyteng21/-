@@ -12,6 +12,8 @@ Output: [-1,1,2,2,3,5,7,8,9]
 就是最最最基本的sorting (不提供側資特徵)\
 目前丟上去的sorting有merge, tim, quick(會stack overflow), 3way quick(會stack overflow), multi-thread merge(更慢)
 
+排名113\
+![image](hw10_rank.png)
 
 ## alghw09 - longest shortest path (LSP)
 題目:
