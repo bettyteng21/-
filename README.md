@@ -2,11 +2,21 @@
 我講的寫法都是base on最快的那個版本(排名圖片中的就是最快的)
 
 ## alghw11 - group conunting
+題目:\
+```
+Your program will take two string array as input. 
+The points corresponding to the same index in the array will be connected to form an edge.
+Please return the number of the groups in the given array.
+```
+範例:\
+![image](hw11_example.png)
+
 
 排名37\
 ![image](hw11_rank_new.png)
 
 ## alghw10 - sorting
+題目:\
 ```
 Your program will take an integer array as input. 
 Please return the sorted ascending array in the given array.
