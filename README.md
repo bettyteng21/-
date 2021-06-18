@@ -1,6 +1,11 @@
 # 109學年下學期 演算法作業
 我講的寫法都是base on最快的那個版本(排名圖片中的就是最快的)
 
+## alghw11 - group conunting
+
+排名37\
+![image](hw11_rank.png)
+
 ## alghw10 - sorting
 ```
 Your program will take an integer array as input. 
