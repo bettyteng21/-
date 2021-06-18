@@ -4,7 +4,7 @@
 ## alghw11 - group conunting
 
 排名37\
-![image](hw11_rank.png)
+![image](hw11_rank_new.png)
 
 ## alghw10 - sorting
 ```
