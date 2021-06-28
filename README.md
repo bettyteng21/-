@@ -9,7 +9,8 @@ The points corresponding to the same index in the array will be connected to for
 Please return the number of the groups in the given array.
 ```
 範例:\
-![image](hw11_example.png)
+<img src="hw11_example.png" alt="Cover" width="30%"/>
+
 
 助教給的測資**很剛好都是正整數的string**，所以才可以使用Integer.parseInt()\
 但如果input不是這麼漂亮，就可以第一版本的hashmap去判斷該string之前有沒有出現過
