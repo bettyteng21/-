@@ -46,7 +46,7 @@ Output: [-1,1,2,2,3,5,7,8,9]
 Your program will take a two-dimensional integer array as input. 
 Each element in the array represents nodes lined together
 Please return the longest shortest-path in the given graph.
--Given a graph G = (V, E), find maxu,v d(u, v), where d(u,v) denotes the shortest path length between node u and node v, for all possible u, v
+Given a graph G = (V, E), find maxu,v d(u, v), where d(u,v) denotes the shortest path length between node u and node v, for all possible u, v
 (In this home work, You may use java.util.collection、java.util.ArrayList、java.util.Stack, but  java.util.* is not allowed.)
 Input: [[0,1][0,2][0,4][1,3][1,4][2,5][6,7]]
 Output: 4
