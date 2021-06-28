@@ -1,5 +1,20 @@
 # 109學年下學期 演算法作業
-我講的寫法都是base on最快的那個版本(排名圖片中的就是最快的)
+我講的寫法都是based on最快的那個版本(排名圖片中的就是最快的)
+
+
+[alghw01 - array data](https://github.com/bettyteng21/1092-Algorithm/blob/main/README.md#alghw01---array-data)\
+[alghw02 - three sum](https://github.com/bettyteng21/1092-Algorithm/blob/main/README.md#alghw02---three-sum)\
+[alghw03 - hill finding](https://github.com/bettyteng21/1092-Algorithm/blob/main/README.md#alghw03---hill-finding)\
+[alghw04 - one 0k rock](https://github.com/bettyteng21/1092-Algorithm/blob/main/README.md#alghw04---one-0k-rock)\
+[alghw05 - lianliankan](https://github.com/bettyteng21/1092-Algorithm/blob/main/README.md#alghw05---lianliankan)\
+[alghw06 - dessert desert](https://github.com/bettyteng21/1092-Algorithm/blob/main/README.md#alghw06---dessert-desert)\
+[alghw07 - buy phone](https://github.com/bettyteng21/1092-Algorithm/blob/main/README.md#alghw07---buy-phone)\
+[alghw08 - buy phone version2](https://github.com/bettyteng21/1092-Algorithm/blob/main/README.md#alghw08---buy-phone-version2)\
+[alghw09 - longest shortest path (LSP)](https://github.com/bettyteng21/1092-Algorithm/blob/main/README.md#alghw09---longest-shortest-path-lsp)\
+[alghw10 - sorting](https://github.com/bettyteng21/1092-Algorithm/blob/main/README.md#alghw10---sorting)\
+[alghw11 - group counting](https://github.com/bettyteng21/1092-Algorithm/blob/main/README.md#alghw11---group-counting)
+
+
 
 ## alghw11 - group counting
 題目:
