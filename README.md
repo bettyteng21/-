@@ -11,6 +11,14 @@ Please return the number of the groups in the given array.
 範例:\
 ![image](hw11_example.png)
 
+助教給的測資**很剛好都是正整數的string**，所以才可以使用Integer.parseInt()\
+但如果input不是這麼漂亮，就可以第一版本的hashmap去判斷該string之前有沒有出現過
+
+我的做法(weighted quick union with path compression):\
+一開始island=0，在讀入A、B string的時候便判斷A和B之前有沒有讀過：\
+(1) 若有任一個或兩個讀過: 將其設成已讀過，且將新加入的island+1 (新增一個島)\
+(2) 把AB union起來，跑QU的find()，如果他們的root不同，就island-- (兩個島合併成一個島，島數減一)
+
 
 排名37\
 ![image](hw11_rank_new.png)
@@ -26,6 +34,7 @@ Output: [-1,1,2,2,3,5,7,8,9]
 
 就是最最最基本的sorting (不提供側資特徵)\
 目前丟上去的sorting有merge, tim, quick(會stack overflow), 3way quick(會stack overflow), multi-thread merge(更慢)
+
 
 排名113\
 ![image](hw10_rank.png)
@@ -49,6 +58,7 @@ Output: 4
 從該點出發做BFS，找離它最遠的點(node1)，再從那最遠的點出發，做第二次BFS，找離它最遠的點(node2)\
 答案就是node1、node2之間的distance\
 (概念像是，我一開始找中間點，第一次BFS去找到邊緣點，第二次找邊緣點到另一端的邊緣點)
+
 
 排名36\
 ![image](hw9_rank.png)
@@ -96,6 +106,7 @@ Output: [[2,10],[4,8],[5,5],[8,4],[10,2]]
 因為這次只有二維，所以不會有像hw8的例外情況!
 建議可以多觀察助教的測資 <strike>或是跟神人同學要他去後台抓的測資</strike>
 
+
 排名85(後來有用同學賭一把的寫法，排名2，但正規寫法就是85)\
 ![image](hw7_rank.png)
         
@@ -122,6 +133,7 @@ Output: [7, 5, 3, 1, 2]
 
 [Leetcode上有差不多的題目](https://massivealgorithms.blogspot.com/2019/02/leetcode-768-max-chunks-to-make-sorted.html)
 
+
 排名19\
 ![image](hw6_rank.png)
 
@@ -134,6 +146,7 @@ Output: true
 固定一點，找它和其他點的斜率，記錄到自己實作hash map(不用hash map也行，但hash map的find複雜度低)，找有沒有一樣的斜率
 
 BTW 助教測資都剛好給到**三點連線會通過原點**，所以可以固定原點去跑就好 <strike>(太晚知道這個祕密惹QQ)</strike>
+
 
 排名17\
 ![image](hw5_rank.png)
@@ -149,6 +162,7 @@ For example,
 ```
 
 從中間開始往外比較，若有錯誤就break
+
 
 排名6\
 ![image](hw4_rank.png)
@@ -182,6 +196,7 @@ Output: 2 (分別是(1,2,-3以及(-1,4,-3)2組)
 ```
 
 [網上有差不多的](https://www.geeksforgeeks.org/find-a-triplet-that-sum-to-a-given-value/)
+
 
 排名39\
 ![image](hw2_rank.png)
