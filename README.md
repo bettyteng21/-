@@ -1,7 +1,7 @@
 # 109學年下學期 演算法作業
 我講的寫法都是base on最快的那個版本(排名圖片中的就是最快的)
 
-## alghw11 - group conunting
+## alghw11 - group counting
 題目:
 ```
 Your program will take two string array as input. 
